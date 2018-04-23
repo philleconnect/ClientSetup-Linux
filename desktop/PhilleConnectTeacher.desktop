@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=PhilleConnectTeacher
+GenericName=PhilleConnect Teacher
+Comment=Mit meinem Home-Laufwerk verbinden
+Type=Application
+Exec=sudo -H PhilleConnectTeacher
+TryExec=/usr/bin/PhilleConnectTeacher
+Icon=

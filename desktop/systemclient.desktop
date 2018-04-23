@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=systemclient
+GenericName=systemclient
+Type=Application
+Exec=sudo -H systemclient
+TryExec=/usr/bin/systemclient

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=PhilleConnectDrive
+GenericName=PhilleConnect Drive
+Comment=Mit meinem Home-Laufwerk verbinden
+Type=Application
+Exec=sudo -H PhilleConnectDrive
+TryExec=/usr/bin/PhilleConnectDrive
+Icon=
