@@ -26,14 +26,26 @@ if [ ! '$GNOME' ] && [ ! '$KDE' ]; then
 	echo "Couldn't find GNOME or KDE. Unable to install PhilleConnect."
 	exit
 fi
+CONFIGFILE="pcconfig.jkm"
+if [ ! -f $CONFIGFILE ]; then
+	echo "Couldn't find configuration file pcconfig.jkm. Please give path to pcconfig.jkm:"
+	while true; do
+		read CONFIGFILE
+		if [ -f $CONFIGFILE ]; then
+			break
+		else
+			echo "Couldn't find configuration file on this location. Please try again."
+		fi
+	done
+fi
+echo "Please choose which variant you want to install:"
 while true; do
-	echo "Please choose which variant you want to install:"
 	echo "[0] Install for a student machine"
 	echo "[1] Install for a teacher machine with student control"
 	echo "[2] Install for a standalone teacher machine"
 	read VARIANT
 	if [ $VARIANT != '0' ] && [ $VARIANT != '1' ] && [ $VARIANT != '2' ]; then
-		echo "Couldn't parse input, aborting"
+		echo "Couldn't parse input, please try again:"
 	else
 		break
 	fi
@@ -42,18 +54,13 @@ echo "Installing dependencies..."
 sudo apt install -y libssl-dev net-tools cifs-utils
 if [ $VARIANT = '0' ]; then
 	sudo apt install -y x11vnc
-	echo "Setting up vnc server..."
-	sudo cp config/x11vnc.pass /etc/
 elif [ $VARIANT = '1' ]; then
-	sudo apt install -y xtightvncviewer
-	sudo cp vnc/vncsnapshot /usr/bin/
-	sudo mkdir /etc/philleconnect
-	sudo cp config/passwd /etc/philleconnect/
+	sudo apt install -y xtightvncviewer x11vnc
 fi
 echo "Copying files..."
 sudo cp bin/PhilleConnectStart /usr/bin/
 sudo cp bin/ClientRegistrationTool /tmp/
-sudo cp pcconfig.jkm /etc/
+sudo cp $CONFIGFILE /etc/pcconfig.jkm
 if [ $VARIANT = '0' ]; then
 	sudo cp bin/PhilleConnectDrive /usr/bin/
 	sudo cp bin/systemclient /usr/bin/
