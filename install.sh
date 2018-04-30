@@ -132,7 +132,7 @@ else
 	sudo rm /tmp/ClientRegistrationTool
 	echo "Installation finished!"
 	read -p "After the installation, a reboot is required.\nDo you want to reboot now? [y/n]" REBOOT
-	if [ $REBOOT =~ ^[yYjJ] ] then
+	if [[ $REBOOT =~ ^[yYjJ] ]]; then
 		echo "I will reboot now..."
 		reboot
 	fi
