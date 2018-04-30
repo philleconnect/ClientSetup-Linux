@@ -72,20 +72,20 @@ if [ $VARIANT = '0' ]; then
 	sudo cp desktop/systemclient.desktop /etc/xdg/autostart/
 	sudo chmod +x /etc/xdg/autostart/systemclient.desktop
 	sudo chmod +x /etc/xdg/autostart/PhilleConnectDrive.desktop
-	echo "$USER ALL=NOPASSWD: /usr/bin/PhilleConnectDrive" | sudo tee --append /etc/sudoers
-	echo "$USER ALL=NOPASSWD: /usr/bin/systemclient" | sudo tee --append /etc/sudoers
+	echo "$USER ALL=NOPASSWD: /usr/bin/PhilleConnectDrive" | sudo tee /etc/sudoers.d/PhilleConnectDrive
+	echo "$USER ALL=NOPASSWD: /usr/bin/systemclient" | sudo tee /etc/sudoers.d/systemclient
 elif [ $VARIANT = '1' ]; then
 	sudo cp bin/PhilleConnectTeacher /usr/bin/
 	sudo chmod +x /usr/bin/PhilleConnectTeacher
 	sudo cp desktop/PhilleConnectTeacher.desktop /etc/xdg/autostart/
 	sudo chmod +x /etc/xdg/autostart/PhilleConnectTeacher.desktop
-	echo "$USER ALL=NOPASSWD: /usr/bin/PhilleConnectTeacher" | sudo tee --append /etc/sudoers
+	echo "$USER ALL=NOPASSWD: /usr/bin/PhilleConnectTeacher" | sudo tee /etc/sudoers.d/PhilleConnectTeacher
 elif [ $VARIANT = '2' ]; then
 	sudo cp bin/PhilleConnectDrive /usr/bin/
 	sudo chmod +x /usr/bin/PhilleConnectDrive
 	sudo cp desktop/PhilleConnectDrive.desktop /etc/xdg/autostart/
 	sudo chmod +x /etc/xdg/autostart/PhilleConnectDrive.desktop
-	echo "$USER ALL=NOPASSWD: /usr/bin/PhilleConnectDrive" | sudo tee --append /etc/sudoers
+	echo "$USER ALL=NOPASSWD: /usr/bin/PhilleConnectDrive" | sudo tee /etc/sudoers.d/PhilleConnectDrive
 fi
 if [ $GNOME = true ]; then
 	DATA='PhilleConnectStart \&\nwait $!\nexec /usr/lib/gnome-session/gnome-session-binary '
@@ -112,7 +112,7 @@ if ! [[ $ICON =~ ^[nN] ]]; then
 	if [ -d ~/Schreibtisch ]; then
 		if [ $VARIANT = '1' ]; then
 			sudo cp desktop/PhilleConnectTeacher.desktop ~/Schreibtisch/
-			sudo chown "$USER":"$USER" ~/DeSchreibtischsktop/PhilleConnectTeacher.desktop
+			sudo chown "$USER":"$USER" ~/Schreibtisch/PhilleConnectTeacher.desktop
 			sudo chmod +x ~/Schreibtisch/PhilleConnectTeacher.desktop
 		else
 			sudo cp desktop/PhilleConnectDrive.desktop ~/Schreibtisch/
@@ -131,9 +131,6 @@ if [[ $REGISTER =~ ^[yYjJ] ]]; then
 else
 	sudo rm /tmp/ClientRegistrationTool
 	echo "Installation finished!"
-	echo "After the installation, a reboot is required. Do you want to rebot now?"
-	echo "[0] Yes"
-	echo "[1] No"
 	read -p "After the installation, a reboot is required.\nDo you want to reboot now? [y/n]" REBOOT
 	if [ $REBOOT =~ ^[yYjJ] ] then
 		echo "I will reboot now..."
