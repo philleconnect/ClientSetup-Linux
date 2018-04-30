@@ -56,21 +56,27 @@ if [ -f /usr/bin/gnome-session ]; then
 	sudo mv /tmp/gnome-session-temp /usr/bin/gnome-session
 	sudo grep -v "wait $!" /usr/bin/gnome-session > /tmp/gnome-session-temp
 	sudo mv /tmp/gnome-session-temp /usr/bin/gnome-session
+	sudo chown root:root /usr/bin/gnome-session
+	sudo chmod 744 /usr/bin/gnome-session
+	sudo chmod +x /usr/bin/gnome-session
 fi
-if [ -f /usr/bin/startkde ]; then	
+if [ -f /usr/bin/startkde ]; then
 	sudo grep -v "PhilleConnectStart &" /usr/bin/startkde > /tmp/startkde-temp
 	sudo mv /tmp/startkde-temp /usr/bin/startkde
 	sudo grep -v "wait $!" /usr/bin/startkde > /tmp/startkde-temp
 	sudo mv /tmp/startkde-temp /usr/bin/startkde
+	sudo chown root:root /usr/bin/startkde
+	sudo chmod 744 /usr/bin/startkde
+	sudo chmod +x /usr/bin/startkde
 fi
 if [ -f /etc/sudoers.d/PhilleConnectDrive ]; then
-	sudo rm /etc/sudoers.d/PhilleConnectDrive 
+	sudo rm /etc/sudoers.d/PhilleConnectDrive
 fi
 if [ -f /etc/sudoers.d/PhilleConnectTeacher ]; then
-	sudo rm /etc/sudoers.d/PhilleConnectTeacher 
+	sudo rm /etc/sudoers.d/PhilleConnectTeacher
 fi
 if [ -f /etc/sudoers.d/systemclient ]; then
-	sudo rm /etc/sudoers.d/systemclient 
+	sudo rm /etc/sudoers.d/systemclient
 fi
 read -p "Do you want to remove dependencies? [y/n]" DEPENDENCIES
 if [[ $DEPENDENCIES =~ ^[yYjJ] ]]; then
