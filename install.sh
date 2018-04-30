@@ -59,11 +59,15 @@ elif [ $VARIANT = '1' ]; then
 fi
 echo "Copying files..."
 sudo cp bin/PhilleConnectStart /usr/bin/
+sudo chmod +x /usr/bin/PhilleConnectStart
 sudo cp bin/ClientRegistrationTool /tmp/
+sudo chmod +x /tmp/ClientRegistrationTool
 sudo cp $CONFIGFILE /etc/pcconfig.jkm
 if [ $VARIANT = '0' ]; then
 	sudo cp bin/PhilleConnectDrive /usr/bin/
+	sudo chmod +x /usr/bin/PhilleConnectDrive
 	sudo cp bin/systemclient /usr/bin/
+	sudo chmod +x /usr/bin/systemclient
 	sudo cp desktop/PhilleConnectDrive.desktop /etc/xdg/autostart/
 	sudo cp desktop/systemclient.desktop /etc/xdg/autostart/
 	sudo chmod +x /etc/xdg/autostart/systemclient.desktop
@@ -72,11 +76,13 @@ if [ $VARIANT = '0' ]; then
 	echo "$USER ALL=NOPASSWD: /usr/bin/systemclient" | sudo tee --append /etc/sudoers
 elif [ $VARIANT = '1' ]; then
 	sudo cp bin/PhilleConnectTeacher /usr/bin/
+	sudo chmod +x /usr/bin/PhilleConnectTeacher
 	sudo cp desktop/PhilleConnectTeacher.desktop /etc/xdg/autostart/
 	sudo chmod +x /etc/xdg/autostart/PhilleConnectTeacher.desktop
 	echo "$USER ALL=NOPASSWD: /usr/bin/PhilleConnectTeacher" | sudo tee --append /etc/sudoers
 elif [ $VARIANT = '2' ]; then
 	sudo cp bin/PhilleConnectDrive /usr/bin/
+	sudo chmod +x /usr/bin/PhilleConnectDrive
 	sudo cp desktop/PhilleConnectDrive.desktop /etc/xdg/autostart/
 	sudo chmod +x /etc/xdg/autostart/PhilleConnectDrive.desktop
 	echo "$USER ALL=NOPASSWD: /usr/bin/PhilleConnectDrive" | sudo tee --append /etc/sudoers
