@@ -51,12 +51,17 @@ if [ -f ~/Schreibtisch/PhilleConnectTeacher.desktop ]; then
 	sudo rm ~/Schreibtisch/PhilleConnectTeacher.desktop
 fi
 echo "Removing configuration"
-DATA='PhilleConnectStart \&\nwait $!'
 if [ -f /usr/bin/gnome-session ]; then
-	sudo sed -n '/${DATA}/!p' /usr/bin/gnome-session
+	sudo grep -v "PhilleConnectStart &" /usr/bin/gnome-session > /tmp/gnome-session-temp
+	sudo mv /tmp/gnome-session-temp /usr/bin/gnome-session
+	sudo grep -v "wait $!" /usr/bin/gnome-session > /tmp/gnome-session-temp
+	sudo mv /tmp/gnome-session-temp /usr/bin/gnome-session
 fi
 if [ -f /usr/bin/startkde ]; then	
-	sudo sed -n '/${DATA}/!p' /usr/bin/startkde
+	sudo grep -v "PhilleConnectStart &" /usr/bin/startkde > /tmp/startkde-temp
+	sudo mv /tmp/startkde-temp /usr/bin/startkde
+	sudo grep -v "wait $!" /usr/bin/startkde > /tmp/startkde-temp
+	sudo mv /tmp/startkde-temp /usr/bin/startkde
 fi
 if [ -f /etc/sudoers.d/PhilleConnectDrive ]; then
 	sudo rm /etc/sudoers.d/PhilleConnectDrive 
@@ -68,7 +73,7 @@ if [ -f /etc/sudoers.d/systemclient ]; then
 	sudo rm /etc/sudoers.d/systemclient 
 fi
 read -p "Do you want to remove dependencies? [y/n]" DEPENDENCIES
-if [ $DEPENDENCIES =~ ^[yYjJ] ] then
+if [[ $DEPENDENCIES =~ ^[yYjJ] ]]; then
 	echo "Removing dependencies..."
 	sudo apt -y remove x11vnc xtightvncviewer libssl-dev net-tools cifs-utils
 fi
