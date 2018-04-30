@@ -95,11 +95,9 @@ if [ $KDE = true ]; then
 	DATA='PhilleConnectStart \&\nwait $!\n# finally, give the session control to the session manager'
 	sudo sed -i "s|# finally, give the session control to the session manager|${DATA}|g" /usr/bin/startkde
 fi
-echo "Do you want a desktop icon?"
-echo "[0] Yes"
-echo "[1] No"
-read ICON
-if [ $ICON = '0' ]; then
+
+read -p "Do you want a desktop icon? [y/n] (default: y)" ICON
+if ! [[ $ICON =~ ^[nN] ]]; then
 	if [ -d ~/Desktop ]; then
 		if [ $VARIANT = '1' ]; then
 			sudo cp desktop/PhilleConnectTeacher.desktop ~/Desktop/
@@ -123,23 +121,22 @@ if [ $ICON = '0' ]; then
 		fi
 	fi
 fi
-echo "Do you want to register this client?"
-echo "[0] Yes"
-echo "[1] No"
-read REGISTER
-if [ $REGISTER = '0' ]; then
+
+read -p "Do you want to register this client? [y/n] (default: n)" REGISTER
+if [[ $REGISTER =~ ^[yYjJ] ]]; then
 	/tmp/ClientRegistrationTool &
 	wait $!
-fi
-sudo rm /tmp/ClientRegistrationTool
-echo "Installation finished!"
-if [ $REGISTER != '0' ]; then
+	sudo rm /tmp/ClientRegistrationTool
+	echo "Installation finished!"
+else
+	sudo rm /tmp/ClientRegistrationTool
+	echo "Installation finished!"
 	echo "After the installation, a reboot is required. Do you want to rebot now?"
 	echo "[0] Yes"
 	echo "[1] No"
-	read REBOOT
-	if [ $REBOOT = '0' ]; then
-		echo "will reboot"
+	read -p "After the installation, a reboot is required.\nDo you want to reboot now? [y/n]" REBOOT
+	if [ $REBOOT =~ ^[yYjJ] ] then
+		echo "I will reboot now..."
 		reboot
 	fi
 fi
