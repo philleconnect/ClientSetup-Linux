@@ -4,3 +4,4 @@ GenericName=systemclient
 Type=Application
 Exec=sudo -H systemclient
 TryExec=/usr/bin/systemclient
+Icon=/opt/philleconnect/logo.png

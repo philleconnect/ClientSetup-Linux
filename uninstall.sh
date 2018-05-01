@@ -50,6 +50,9 @@ fi
 if [ -f ~/Schreibtisch/PhilleConnectTeacher.desktop ]; then
 	sudo rm ~/Schreibtisch/PhilleConnectTeacher.desktop
 fi
+if [ -f /opt/philleconnect/logo.png ]; then
+	sudo rm -R /opt/philleconnect
+fi
 echo "Removing configuration"
 if [ -f /usr/bin/gnome-session ]; then
 	sudo grep -v "PhilleConnectStart &" /usr/bin/gnome-session > /tmp/gnome-session-temp

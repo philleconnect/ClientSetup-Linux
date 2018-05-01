@@ -62,6 +62,8 @@ sudo cp bin/PhilleConnectStart /usr/bin/
 sudo chmod +x /usr/bin/PhilleConnectStart
 sudo cp bin/ClientRegistrationTool /tmp/
 sudo chmod +x /tmp/ClientRegistrationTool
+sudo mkdir /opt/philleconnect
+sudo cp img/logo.png /opt/philleconnect/
 sudo cp $CONFIGFILE /etc/pcconfig.jkm
 if [ $VARIANT = '0' ]; then
 	sudo cp bin/PhilleConnectDrive /usr/bin/
@@ -131,7 +133,8 @@ if [[ $REGISTER =~ ^[yYjJ] ]]; then
 else
 	sudo rm /tmp/ClientRegistrationTool
 	echo "Installation finished!"
-	read -p "After the installation, a reboot is required.\nDo you want to reboot now? [y/n]" REBOOT
+	echo "After the installation, a reboot is required."
+	read -p "Do you want to reboot now? [y/n]" REBOOT
 	if [[ $REBOOT =~ ^[yYjJ] ]]; then
 		echo "I will reboot now..."
 		reboot
