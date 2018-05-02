@@ -60,11 +60,14 @@ fi
 echo "Copying files..."
 sudo cp bin/PhilleConnectStart /usr/bin/
 sudo chmod +x /usr/bin/PhilleConnectStart
+sudo cp bin/onlinechecker /usr/bin/PhilleConnectOnlineChecker
+sudo chmod +x /usr/bin/PhilleConnectOnlineChecker
 sudo cp bin/ClientRegistrationTool /tmp/
 sudo chmod +x /tmp/ClientRegistrationTool
 sudo mkdir /opt/philleconnect
 sudo cp img/logo.png /opt/philleconnect/
 sudo cp $CONFIGFILE /etc/pcconfig.jkm
+echo "$USER ALL=NOPASSWD: /usr/bin/PhilleConnectOnlineChecker" | sudo tee /etc/sudoers.d/PhilleConnectOnlineChecker
 if [ $VARIANT = '0' ]; then
 	sudo cp bin/PhilleConnectDrive /usr/bin/
 	sudo chmod +x /usr/bin/PhilleConnectDrive

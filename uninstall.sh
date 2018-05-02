@@ -26,6 +26,9 @@ fi
 if [ -f /usr/bin/systemclient ]; then
 	sudo rm /usr/bin/systemclient
 fi
+if [ -f /usr/bin/PhilleConnectOnlineChecker ]; then
+	sudo rm /usr/bin/PhilleConnectOnlineChecker
+fi
 if [ -f /etc/pcconfig.jkm ]; then
 	sudo rm /etc/pcconfig.jkm 
 fi
@@ -80,6 +83,9 @@ if [ -f /etc/sudoers.d/PhilleConnectTeacher ]; then
 fi
 if [ -f /etc/sudoers.d/systemclient ]; then
 	sudo rm /etc/sudoers.d/systemclient
+fi
+if [ -f /etc/sudoers.d/PhilleConnectOnlineChecker ]; then
+	sudo rm /etc/sudoers.d/PhilleConnectOnlineChecker
 fi
 read -p "Do you want to remove dependencies? [y/n]" DEPENDENCIES
 if [[ $DEPENDENCIES =~ ^[yYjJ] ]]; then
