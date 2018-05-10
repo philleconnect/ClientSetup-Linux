@@ -2,9 +2,6 @@
 PhilleConnect Client installer for Linux  
 This installer will setup your Linux machine to use it as a Client for PhilleConnect.
 
-# Beta
-PhilleConnect for Linux is currently in Beta-testing.
-
 # Compatiblity
 PhilleConnect Client for Linux currently supports:  
 Ubuntu 18.04 LTS (64-Bit)
