@@ -27,4 +27,4 @@ You can configure these values:
 Download this repository and place your pcconfig.jkm inside. Then, run install.sh as the user you want PhilleConnect to be installed. The script needs root access, so keep your root password ready.
 
 # Source code
-The source code of all PhilleConnect client applications is a part of a project for the Abitur 2018. Therefore, I'll publish it on GitHub in may 2018 when the tests are over.
+The source code of all PhilleConnect client applications is a now available on GitHub!
