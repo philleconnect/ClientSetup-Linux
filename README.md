@@ -1,3 +1,5 @@
+__Archived: Not actively maintained anymore!__
+
 # ClientSetup-Linux
 PhilleConnect Client installer for Linux  
 This installer will setup your Linux machine to use it as a Client for PhilleConnect.
